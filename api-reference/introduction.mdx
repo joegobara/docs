@@ -1,33 +1,62 @@
----
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
----
-
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+  Welcome to Wiseflow's API documentation. Build enterprise-grade onboarding experiences with our powerful API suite.
 </Note>
 
-## Welcome
+## Overview
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+Our REST API enables you to programmatically manage customer onboarding workflows, automate data collection, and streamline verification processes.
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+<CardGroup cols={2}>
+  <Card title="Customers" icon="users" href="/api-reference/customers/overview">
+    Manage both business (B2B) and individual (B2C) customer profiles
+  </Card>
+  <Card title="Forms" icon="book" href="/api-reference/forms/overview">
+    Create and manage dynamic data collection forms
+  </Card>
+  <Card title="Onboarding Sessions" icon="rocket" href="/api-reference/sessions/overview">
+    Track and manage customer onboarding progress
+  </Card>
+  <Card title="Workflows" icon="code-branch" href="/api-reference/workflows/overview">
+    Design and automate custom onboarding journeys
+  </Card>
+</CardGroup>
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+<CodeGroup>
+  ```bash Authentication
+  curl --request GET \
+    --url https://api.wiseflow.ai/v1/customers \
+    --header 'Authorization: Bearer YOUR_API_KEY'
+  ```
+</CodeGroup>
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+All API requests require authentication using Bearer tokens. Include your API key in the Authorization header of each request.
+
+<Warning>
+  Keep your API keys secure and never expose them in client-side code. Use environment variables for storing sensitive credentials.
+</Warning>
+
+## Response Format
+
+All API endpoints return JSON responses and use standard HTTP response codes:
+
+<ResponseField name="200 - OK" type="success">
+  The request was successful
+</ResponseField>
+
+<ResponseField name="400 - Bad Request" type="error">
+  The request was invalid or missing required parameters
+</ResponseField>
+
+<ResponseField name="401 - Unauthorized" type="error">
+  Authentication failed or token is invalid
+</ResponseField>
+
+<ResponseField name="404 - Not Found" type="error">
+  The requested resource doesn't exist
+</ResponseField>
+
+<ResponseField name="429 - Too Many Requests" type="error">
+  Rate limit exceeded
+</ResponseField>

@@ -1,71 +1,62 @@
----
-title: Introduction
-description: 'Welcome to the home of your new documentation'
----
+<Note>
+  Welcome to Wiseflow's API documentation. Build enterprise-grade onboarding experiences with our powerful API suite.
+</Note>
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.svg"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.svg"
-  alt="Hero Dark"
-/>
+## Overview
 
-## Setting up
-
-The first step to world-class documentation is setting up your editing environments.
+Our REST API enables you to programmatically manage customer onboarding workflows, automate data collection, and streamline verification processes.
 
 <CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
+  <Card title="Customers" icon="users" href="/api-reference/customers/overview">
+    Manage both business (B2B) and individual (B2C) customer profiles
   </Card>
-  <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
-  >
-    Preview your changes before you push to make sure they're perfect
+  <Card title="Forms" icon="book" href="/api-reference/forms/overview">
+    Create and manage dynamic data collection forms
+  </Card>
+  <Card title="Onboarding Sessions" icon="rocket" href="/api-reference/sessions/overview">
+    Track and manage customer onboarding progress
+  </Card>
+  <Card title="Workflows" icon="code-branch" href="/api-reference/workflows/overview">
+    Design and automate custom onboarding journeys
   </Card>
 </CardGroup>
 
-## Make it yours
+## Authentication
 
-Update your docs to your brand and add valuable content for the best user conversion.
+<CodeGroup>
+  ```bash Authentication
+  curl --request GET \
+    --url https://api.wiseflow.ai/v1/customers \
+    --header 'Authorization: Bearer YOUR_API_KEY'
+  ```
+</CodeGroup>
 
-<CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
-  </Card>
-  <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
-  >
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our showcase of our favorite documentation
-  </Card>
-</CardGroup>
+All API requests require authentication using Bearer tokens. Include your API key in the Authorization header of each request.
+
+<Warning>
+  Keep your API keys secure and never expose them in client-side code. Use environment variables for storing sensitive credentials.
+</Warning>
+
+## Response Format
+
+All API endpoints return JSON responses and use standard HTTP response codes:
+
+<ResponseField name="200 - OK" type="success">
+  The request was successful
+</ResponseField>
+
+<ResponseField name="400 - Bad Request" type="error">
+  The request was invalid or missing required parameters
+</ResponseField>
+
+<ResponseField name="401 - Unauthorized" type="error">
+  Authentication failed or token is invalid
+</ResponseField>
+
+<ResponseField name="404 - Not Found" type="error">
+  The requested resource doesn't exist
+</ResponseField>
+
+<ResponseField name="429 - Too Many Requests" type="error">
+  Rate limit exceeded
+</ResponseField>
